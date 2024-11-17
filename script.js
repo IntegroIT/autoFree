@@ -1,6 +1,6 @@
 const todayButton = document.getElementById("today");
 const tomorrowButton = document.getElementById("tomorrow");
-const customButton = document.getElementById("custom");
+// const customButton = document.getElementById("custom");
 const dateInputs = document.querySelector(".date-inputs");
 const date1Input = document.getElementById("date1");
 const date2Input = document.getElementById("date2");
@@ -18,11 +18,13 @@ const handleToday = () => {
 
   todayButton.classList.add("active");
   tomorrowButton.classList.remove("active");
-  customButton.classList.remove("active");
+  // customButton.classList.remove("active");
 
   if (dateInputs.style.display === "flex") {
     dateInputs.style.display = "none";
   }
+
+  handleSubmit();
 };
 
 const handleTomorrow = () => {
@@ -34,11 +36,13 @@ const handleTomorrow = () => {
 
   todayButton.classList.remove("active");
   tomorrowButton.classList.add("active");
-  customButton.classList.remove("active");
+  // customButton.classList.remove("active");
 
   if (dateInputs.style.display === "flex") {
     dateInputs.style.display = "none";
   }
+
+  handleSubmit();
 };
 
 const handleCustom = () => {
@@ -46,7 +50,7 @@ const handleCustom = () => {
 
   todayButton.classList.remove("active");
   tomorrowButton.classList.remove("active");
-  customButton.classList.add("active");
+  // customButton.classList.add("active");
 };
 
 const handleSubmit = () => {
@@ -111,6 +115,8 @@ const handleSubmit = () => {
       // Скрыть фон загрузки и индикатор
       hideLoader();
     });
+  const tg = window.Telegram.WebApp;
+  tg.close();
 };
 
 // Функции для показа/скрытия фона загрузки и индикатора
@@ -128,5 +134,5 @@ function hideLoader() {
 
 todayButton.addEventListener("click", handleToday);
 tomorrowButton.addEventListener("click", handleTomorrow);
-customButton.addEventListener("click", handleCustom);
+// customButton.addEventListener("click", handleCustom);
 submitButton.addEventListener("click", handleSubmit);
