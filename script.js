@@ -54,11 +54,13 @@ const handleCustom = () => {
 };
 
 const handleSubmit = () => {
+  const tg = window?.Telegram?.WebApp;
+  const chat_id = tg?.initDataUnsafe?.user?.id;
   const date1 = date1Input.value;
   const date2 = date2Input.value;
 
   // Создаем URL с параметрами
-  const apiUrl = `https://script.google.com/macros/s/AKfycbwzeFf8B_ru09VHhHjlQsbCvLm2p6MARSZO3Zl_FKfMTvvm1anWAP3ZJ_e_JDclBU2D/exec?date1=${date1}&date2=${date2}`;
+  const apiUrl = `https://script.google.com/macros/s/AKfycbwzeFf8B_ru09VHhHjlQsbCvLm2p6MARSZO3Zl_FKfMTvvm1anWAP3ZJ_e_JDclBU2D/exec?date1=${date1}&date2=${date2}&chat_id=${chat_id}`;
   console.log(apiUrl);
 
   // Покажите фон загрузки и индикатор
@@ -75,6 +77,7 @@ const handleSubmit = () => {
       if (!response.ok) {
         throw new Error("Ошибка при получении данных");
       }
+      tg.close();
       // Преобразование ответа в JSON
       return response.json();
     })
@@ -115,8 +118,6 @@ const handleSubmit = () => {
       // Скрыть фон загрузки и индикатор
       hideLoader();
     });
-  const tg = window.Telegram.WebApp;
-  tg.close();
 };
 
 // Функции для показа/скрытия фона загрузки и индикатора
